@@ -1,0 +1,29 @@
+SNAPINIT '464.sna' ; la mémoire de Rasm est initialisée avec le snapshot
+BUILDSNA
+SNASET GA_ROMCFG,%1100 ; pour être sûr de démarrer dans la mémoire, on les désactive du snapshot au cas où
+BANKSET 0 ; assembler dans les premiers 64K
+RUN #8000
+ORG #8000
+
+message DEFB 'Hello World !',0
+
+debut
+
+LD  A,1
+CALL #BC0E     ; SCR_SET_MODE
+
+LD  A,14 : LD  L,A     ; ligne
+LD  A,15 : LD  H,A      ; colonne
+CALL #BB75
+
+LD HL,message
+CALL print_message
+RET
+
+print_message
+LD A,(HL) : INC HL ; récupérer un octet et avancer dans le tableau
+OR A : RET Z ; si l'octet est nul, on sort de la routine
+CALL #BB5A ; afficher le caractère avec le vecteur système
+JR print_message ; et on recommence
+
+fin
