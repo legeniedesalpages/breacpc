@@ -6,45 +6,51 @@ plateau:
     ADD HL, DE : EX HL,DE : CALL tuile
 
     LD HL, ScreenLineTable
-    LD BC, 22 ; ligne
+    LD BC, 20 ; ligne
     ADD HL, BC : LD E, (HL) : LD BC, 1 : ADD HL, BC : LD D, (HL) : EX HL,DE ; dans HL adresse de la ligne
     LD DE, 30 ; colonne
     ADD HL, DE : EX HL,DE : CALL tuile
 
     LD HL, ScreenLineTable
-    LD BC, 44 ; ligne
+    LD BC, 40 ; ligne
     ADD HL, BC : LD E, (HL) : LD BC, 1 : ADD HL, BC : LD D, (HL) : EX HL,DE ; dans HL adresse de la ligne
     LD DE, 25 ; colonne
     ADD HL, DE : EX HL,DE : CALL tuile
 
     LD HL, ScreenLineTable
-    LD BC, 66 ; ligne
+    LD BC, 60 ; ligne
     ADD HL, BC : LD E, (HL) : LD BC, 1 : ADD HL, BC : LD D, (HL) : EX HL,DE ; dans HL adresse de la ligne
     LD DE, 20 ; colonne
     ADD HL, DE : EX HL,DE : CALL tuile
 
     LD HL, ScreenLineTable
-    LD BC, 88 ; ligne
+    LD BC, 80 ; ligne
     ADD HL, BC : LD E, (HL) : LD BC, 1 : ADD HL, BC : LD D, (HL) : EX HL,DE ; dans HL adresse de la ligne
     LD DE, 15 ; colonne
     ADD HL, DE : EX HL,DE : CALL tuile
 
     LD HL, ScreenLineTable
-    LD BC, 110 ; ligne
+    LD BC, 100 ; ligne
     ADD HL, BC : LD E, (HL) : LD BC, 1 : ADD HL, BC : LD D, (HL) : EX HL,DE ; dans HL adresse de la ligne
     LD DE, 10 ; colonne
     ADD HL, DE : EX HL,DE : CALL tuile
 
     LD HL, ScreenLineTable
-    LD BC, 132 ; ligne
+    LD BC, 120 ; ligne
     ADD HL, BC : LD E, (HL) : LD BC, 1 : ADD HL, BC : LD D, (HL) : EX HL,DE ; dans HL adresse de la ligne
     LD DE, 5 ; colonne
     ADD HL, DE : EX HL,DE : CALL tuile
 
     LD HL, ScreenLineTable
-    LD BC, 154 ; ligne
+    LD BC, 140 ; ligne
     ADD HL, BC : LD E, (HL) : LD BC, 1 : ADD HL, BC : LD D, (HL) : EX HL,DE ; dans HL adresse de la ligne
     LD DE, 0 ; colonne
+    ADD HL, DE : EX HL,DE : CALL tuile
+
+    LD HL, ScreenLineTable
+    LD BC, 20 ; ligne
+    ADD HL, BC : LD E, (HL) : LD BC, 1 : ADD HL, BC : LD D, (HL) : EX HL,DE ; dans HL adresse de la ligne
+    LD DE, 40 ; colonne
     ADD HL, DE : EX HL,DE : CALL tuile
 
     RET

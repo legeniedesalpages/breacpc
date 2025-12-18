@@ -27,7 +27,7 @@ message_into_the_breach DEFB 'Into the Breach',0
 tuile_data:
     INCBIN "../assets/tuile_herbe.bin"
 masque_tuile:
-    INCBIN "../assets/tuile_masque.bin"
+    INCBIN "../assets/tuile_herbe_masque.bin"
 
 ScreenLineTable:
     DW #C000,#C800,#D000,#D800,#E000,#E800,#F000,#F800
