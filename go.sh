@@ -1,2 +1,3 @@
-../assembleur/rasm_w64.exe main.sna -o bin/rasmoutput
-../assembleur/AceDL.exe bin/rasmoutput.sna
+rm build/*.*
+../assembleur/rasm_w64.exe src/main.sna -o build/rasmoutput
+../assembleur/AceDL.exe build/rasmoutput.sna
