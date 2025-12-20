@@ -13,10 +13,10 @@ debut
 
 INCLUDE "../src/init.asm" ; initialisation graphique
 
-CALL plateau
+
+CALL generer_plateau    
 
 cc:
-    
     JR cc
 
 INCLUDE "graphique/tuile.asm"

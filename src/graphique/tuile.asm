@@ -1,11 +1,12 @@
 tuile:
     LD HL, tuile_data
     LD IX, masque_tuile
-    LD A, 30
+    LD A, 32 ; hauteur de la tuile (32 pixels)
     
 tuile_boucle_ligne:
     PUSH AF
-    LD B, 10
+    LD B, 10 ; largeur de la tuile (10 * 4 bits = 40 pixels)
+
 tuile_boucle_colonne:
     LD A,(DE)         ; lire écran
     AND (IX)          ; masque
@@ -24,10 +25,12 @@ tuile_boucle_colonne:
     
     LD BC, #C050
     ADD HL, BC
+    
 continue_tuile:
     EX DE, HL
+
     POP AF
-    DEC A
-    OR A : JR NZ, tuile_boucle_ligne
-    RET
+    DEC A : OR A : JR NZ, tuile_boucle_ligne
+    
+RET
 
