@@ -1,7 +1,10 @@
 
 generer_plateau:
-    LD A, 0; huit tuiles par colonnes
 
+    LD A, 0
+    EX AF, AF'
+
+    LD A, 0; huit tuiles par colonnes en ordre croissant
     plateau_boucle_ligne:
         PUSH AF
         
@@ -21,8 +24,7 @@ generer_plateau:
         ADD HL, BC ; 40 + A * 5
         LD BC, HL ; dans BC la colonne (qui va de de 0 à 79 => 4 bits par colonne => 319)
         
-        LD A, 8 ; huit tuiles par lignes
-        
+        LD A, 8 ; huit tuiles par lignes en ordre décroissant
         plateau_boucle_colonne:
             PUSH AF
 
@@ -42,7 +44,44 @@ generer_plateau:
             LD D, 0 : LD E, A
 
             PUSH DE 
-            ADD HL, DE : EX HL,DE : CALL tuile
+            ADD HL, DE : EX HL,DE
+
+            EX AF, AF'
+
+            LD HL, matrice_plateau
+            LD B, 0 : LD C, A
+            ADD HL, BC
+            INC A
+            EX AF, AF'
+
+            LD A, (HL)
+
+            CP A, 1 : JP Z, montagne
+            CP A, 2 : JP Z, eau
+            CP A, 3 : JP Z, ville
+
+            herbe:
+                LD HL, tuile_herbe_data
+                LD IX, masque_herbe_data
+                JP affiche_tuile_plateau
+
+            montagne:
+                LD HL, tuile_montagne_data
+                LD IX, masque_montagne_data
+                JP affiche_tuile_plateau
+
+            eau:
+                LD HL, tuile_eau_data
+                LD IX, masque_eau_data
+                JP affiche_tuile_plateau
+
+            ville:
+                LD HL, tuile_ville_data
+                LD IX, masque_ville_data
+                JP affiche_tuile_plateau
+
+            affiche_tuile_plateau:
+                CALL tuile
 
             POP BC
             POP DE

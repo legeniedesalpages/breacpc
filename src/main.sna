@@ -16,18 +16,50 @@ INCLUDE "../src/init.asm" ; initialisation graphique
 
 CALL generer_plateau    
 
+
+LD A, 1
+boucle_prime:
+    PUSH AF
+    LD B, 0: LD C, A
+    LD HL, #CA4F
+    ADD HL, BC
+    LD DE, HL
+    LD HL, mech_prime_data
+    LD IX, masque_prime_data
+    CALL mech
+    POP AF
+    DEC A : OR A : JR NZ, boucle_prime
+
 cc:
     JR cc
 
 INCLUDE "graphique/tuile.asm"
+INCLUDE "graphique/mech.asm"
 INCLUDE "graphique/plateau.asm"
 
 message_into_the_breach DEFB 'Into the Breach',0
 
-tuile_data:
+tuile_herbe_data:
     INCBIN "../assets/tuile_herbe.bin"
-masque_tuile:
+masque_herbe_data:
     INCBIN "../assets/tuile_herbe_masque.bin"
+tuile_montagne_data:
+    INCBIN "../assets/tuile_montagne.bin"
+masque_montagne_data:
+    INCBIN "../assets/tuile_montagne_masque.bin"
+tuile_eau_data:
+    INCBIN "../assets/tuile_eau.bin"
+masque_eau_data:
+    INCBIN "../assets/tuile_eau_masque.bin"
+tuile_ville_data:
+    INCBIN "../assets/tuile_ville.bin"
+masque_ville_data:
+    INCBIN "../assets/tuile_ville_masque.bin"
+
+mech_prime_data:
+    INCBIN "../assets/prime.bin"
+masque_prime_data:
+    INCBIN "../assets/prime_masque.bin"
 
 ScreenLineTable:
     DW #C000,#C800,#D000,#D800,#E000,#E800,#F000,#F800
@@ -55,5 +87,15 @@ ScreenLineTable:
     DW #C6E0,#CEE0,#D6E0,#DEE0,#E6E0,#EEE0,#F6E0,#FEE0
     DW #C730,#CF30,#D730,#DF30,#E730,#EF30,#F730,#FF30
     DW #C780,#CF80,#D780,#DF80,#E780,#EF80,#F780,#FF80
+
+matrice_plateau:
+    DB 2,1,0,0,0,0,0,0   ; ligne 0
+    DB 1,0,0,0,0,0,1,0   ; ligne 1
+    DB 0,0,0,0,0,1,1,0   ; ligne 2
+    DB 0,0,3,0,0,0,1,0   ; ligne 3
+    DB 0,0,3,0,0,0,0,0   ; ligne 4
+    DB 0,3,0,0,0,0,2,2   ; ligne 5
+    DB 3,0,0,0,0,0,2,2   ; ligne 6
+    DB 0,0,0,0,2,2,2,2   ; ligne 7
 
 fin

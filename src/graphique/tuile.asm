@@ -1,6 +1,4 @@
 tuile:
-    LD HL, tuile_data
-    LD IX, masque_tuile
     LD A, 32 ; hauteur de la tuile (32 pixels)
     
 tuile_boucle_ligne:
